@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 require('dotenv').config();
-const taskroutes = require('../backend/Routes/TaskRoutes')
+const taskroutes = require('./Routes/TaskRoutes')
 var cors = require('cors')
 
 app.use(cors());
