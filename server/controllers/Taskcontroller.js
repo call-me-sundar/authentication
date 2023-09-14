@@ -14,4 +14,4 @@ const getData = async (req, res) => {
         res.status(500).json("error", err)
     }
 }
-module.exports = { getData } 
+module.exports = {getData} 
