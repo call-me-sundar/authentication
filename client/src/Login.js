@@ -18,6 +18,7 @@ export default function Login() {
           // alert('successful')
           localStorage.setItem('logindash', true);
           nav("/home");
+          localStorage.setItem('username', (res.data[0].map((ans)=> ans.username)));
         }
       })
       .catch(() => {
@@ -44,6 +45,8 @@ export default function Login() {
   return (
     <div className='login'>
       <form onSubmit={handleSubmit}>
+        <h1 className='mb-0 fs-2 fst-italic'>DashBoard</h1>
+        <h1 className='mb-2 fs-5 fst-italic'>Login</h1>
         <div>
           <input
             type="text"
@@ -62,7 +65,7 @@ export default function Login() {
             required
           />
         </div>
-        <input type='submit' value={`submit`} />
+        <input type='submit' className='btn btn-outline-success' value={`submit`} />
       </form>
     </div>
   );
