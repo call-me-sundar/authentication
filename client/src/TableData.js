@@ -23,8 +23,7 @@ export default function TableData() {
   }, [])
   return (
     <div className='text-white'>
-      <p>Table Datas</p>
-      <div className='p-5'>
+      <h1 className='text-start py-4'>Table Datas</h1>
         <table className='table table-bordered d-block rounded-3 border table-responsive'>
           <tr>
             {columnDatas?.map((value, index) => {
@@ -35,6 +34,7 @@ export default function TableData() {
           </tr>
           {tableDatas?.map((tableValue, tableIndex) => (
             <tr key={tableIndex}>
+              {console.log(tableValue)}
               {columnDatas?.map((columnData) => (
                 <td className='p-3' key={columnData.column_name}>
                   {tableValue[columnData.column_name]}
@@ -44,7 +44,6 @@ export default function TableData() {
           ))}
 
         </table>
-      </div>
     </div>
   )
 }

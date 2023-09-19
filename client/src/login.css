@@ -10,9 +10,35 @@
     padding: 7px 3px;
 }
 
-.login form {
+/* .login form {
     border: 1px solid #c5bdbd;
     border-radius: 13px;
     padding: 45px 30px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+} */
+
+.login form {
+    width: 350px;
+}
+
+.login input[type="text"] , .login input[type='password'], .login input:-internal-autofill-selected {
+    outline: none !important;
+    border: 0 !important;
+    background: #31363a !important;
+    color: white;
+}
+
+.py-2_5{
+    padding-top: 0.8rem!important;
+    padding-bottom: 0.8rem!important;
+}
+
+svg#wave {
+    position: absolute;
+    bottom: 0;
+    z-index: 0;
+}
+
+.pointer{
+    cursor : pointer ;
 }

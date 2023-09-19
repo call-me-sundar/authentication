@@ -37,7 +37,7 @@ const getAdminDetails = async (req, res) => {
     const { username } = req.body;
     try {
         const [result] = await db.query(`SELECT * FROM details WHERE username = ? `, [username]);
-        res.status(200).json(   result)
+        res.status(200).json(result)
     } catch (err) {
         res.status(500).json("error", err)
     }
