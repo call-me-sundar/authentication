@@ -21,11 +21,23 @@
     width: 350px;
 }
 
-.login input[type="text"] , .login input[type='password'], .login input:-internal-autofill-selected {
+.login input[type="text"] , .login input[type='password'],.login input[type='email'],.login input[type='number'], .login input:-internal-autofill-selected {
     outline: none !important;
     border: 0 !important;
     background: #31363a !important;
     color: white;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .py-2_5{
@@ -42,3 +54,25 @@ svg#wave {
 .pointer{
     cursor : pointer ;
 }
+
+
+#wave {
+    height: 150px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #wave path {
+    animation: scrollWave 25s linear infinite; /* Adjust the animation duration as needed */
+  }
+  
+  @keyframes scrollWave {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(-100%); /* Adjust the translation distance as needed */
+    }
+  }
+  
