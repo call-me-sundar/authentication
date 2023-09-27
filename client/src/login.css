@@ -76,3 +76,14 @@ svg#wave {
     }
   }
   
+@media(max-width:992px) {
+  svg#wave{
+    height: auto;
+  }
+}
+
+@media(max-width:576px) {
+  .login form {
+    width: 100%;
+}
+}

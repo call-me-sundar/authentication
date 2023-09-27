@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import SVG from './SVG';
+import Timer from './Timer';
 
 export default function Signup() {
     const [username, setUserName] = useState('');
@@ -12,18 +13,18 @@ export default function Signup() {
     const [showPassword2, setshowPassword2] = useState(false);
     const [otp, setOtp] = useState();
     const [givenOtp, setGivenOtp] = useState();
+    const [time, setTime] = useState(false);
 
     let nav = useNavigate('');
-
-    const createUser = async () => {
+    const checkUser = async () => {
         try {
             const res = await axios.post('http://localhost:5000/checkuser', {
                 username,
                 confirmPassword,
                 mail
             });
-    
-            if(password === confirmPassword){
+
+            if (password === confirmPassword) {
                 if (res.status === 200) {
                     alert('User already exists');
                 } else if (res.status === 201) {
@@ -35,15 +36,17 @@ export default function Signup() {
                     });
                     setOtp(newRes.data);
                     console.log(newRes.data);
-        
                     // Reset the 'otp' state to an empty string after 30 seconds
                     setTimeout(() => {
                         setOtp('');
                     }, 30000); // 30 seconds
+                    setTime(true)
                 } else {
                     alert('User not created');
+                    setTime(false)
                 }
-            }else{
+
+            } else {
                 alert("password does not match");
             }
         } catch (error) {
@@ -51,14 +54,40 @@ export default function Signup() {
             alert('An error occurred while creating the user');
         }
     }
-    
+
+    const createUser = async () => {
+        if (otp == givenOtp) {
+            try {
+                console.log(otp == givenOtp);
+                const response = await axios.post('http://localhost:5000/create', {
+                    username,
+                    confirmPassword,
+                    mail
+                });
+
+                if (response.status === 200) {
+                    alert(`Hi ${username}, Your account was created successfully`);
+                    localStorage.setItem('logindash', true);
+                    localStorage.setItem('username', username);
+                    nav('/')
+                } else {
+                    alert('Some problem occurred while creating the user');
+                }
+            } catch (error) {
+                console.error('Error creating user:', error);
+                alert('Some problem occurred while creating the user');
+            }
+        } else {
+            alert('Invalid OTP');
+        }
+    };
 
 
 
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(username, mail, confirmPassword);
-        createUser();
+        checkUser();
     };
 
     // password visibilty
@@ -72,13 +101,22 @@ export default function Signup() {
         console.log(showPassword2);
     };
 
-    const checkAndUpdate = ()=>{
-        console.log(otp == givenOtp);
-    }
+
+    const [seconds, setSeconds] = useState(30);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setSeconds(seconds - 1);
+        }, 1000);
+
+        return () => {
+            clearInterval(interval); // Stop the timer when the component unmounts
+        };
+    }, []);
 
     return (
-        <div className='login text-secondary'>
-            <Link to={'/'} className='m-0 fs-5 fw-semibold d-flex align-items-center justify-content-center position-absolute top-0 end-0 m-3 pointer'>Login<i className="bi bi-arrow-right px-2 mt-1"></i></Link>
+        <div className='login text-secondary px-5 px-md-0'>
+            <Link to={'/'} className='m-0 fs-5 fw-semibold d-flex align-items-center justify-content-center position-absolute top-0 end-0 m-3 pointer text-decoration-none'>Login<i className="bi bi-arrow-right px-2 mt-1"></i></Link>
             <form className='text-start z-3' onSubmit={handleSubmit}>
                 <h1 className='text-primary mb-0 fs-3'>Here you can Signup</h1>
                 <p className='text-secondary fw-semibold'>Let's join us :)</p>
@@ -153,27 +191,29 @@ export default function Signup() {
                     data-bs-target="#exampleModal"
                     id='myModalButton'
                 >
-                    Launch demo modal
                 </button>
                 {/* Modal */}
                 <div
                     className="modal fade"
                     id="exampleModal"
+                    data-bs-keyboard="false"
                     tabIndex={-1}
                     aria-labelledby="exampleModalLabel"
+                    data-bs-backdrop="static" // This line sets the backdrop to "static"
                     aria-hidden="true"
                 >
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content bg-dark">
                             <div className="modal-header">
                                 <h1 className="modal-title fs-5" id="exampleModalLabel">
-                                    Confirmation
+                                    Confirmation {time && <Timer />}
                                 </h1>
                                 <a
                                     type="button"
                                     className=" text-danger"
                                     data-bs-dismiss="modal"
-                                    aria-label="Close">
+                                    aria-label="Close"
+                                    onClick={() => setTime(false)}>
                                     <i className="bi bi-x-lg border border-0 shadow-none"></i>
                                 </a>
 
@@ -199,18 +239,18 @@ export default function Signup() {
                                     type="button"
                                     className="btn btn-secondary"
                                     data-bs-dismiss="modal"
+                                    onClick={() => setTime(false)}
                                 >
                                     Close
                                 </button>
-                                <button type="button" onClick={checkAndUpdate} className="btn btn-primary">
-                                    Save changes
+                                <button type="button" data-bs-dismiss="modal" onClick={createUser} className="btn btn-primary">
+                                    submit
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </>
-
         </div>
     );
 }

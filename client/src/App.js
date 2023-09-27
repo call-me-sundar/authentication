@@ -7,6 +7,7 @@ import TableData from './Projects/Home/TableData';
 import './login.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from './Projects/auth/Signup';
+import Timer from './Projects/auth/Timer';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/timer" element={<Timer />} />
           <Route path='/home' element={<Home />}>
             <Route path='' element={<HomeContent/>}/>
             <Route path='admindetails' element={<AdminDetails/>}/>
