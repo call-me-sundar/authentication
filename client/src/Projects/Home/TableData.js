@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Loader from '../Loader/Loader';
 
 export default function TableData() {
   const [tableDatas, setTableData] = useState();
   const [columnDatas, setColumnDatas] = useState();
+  const [loader, setLoader] = useState(false);
 
   let getTableData = async () => {
+    try{
+      setLoader(true);
     let res = await axios.get('http://localhost:5000/tabledatas');
     setTableData(res.data);
     console.log(res.data);
+    }catch(err){
+      setLoader(false)
+      alert(err)
+    }finally{
+      setLoader(false);
+    }
   }
 
   let getColumnDatas = async () => {
@@ -23,6 +33,7 @@ export default function TableData() {
   }, [])
   return (
     <div className='text-white'>
+      {loader && <Loader/>}
       <h1 className='text-start py-4'>Table Datas</h1>
         <table className='table table-bordered d-block rounded-3 border table-responsive'>
           <tr>

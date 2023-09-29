@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import SVG from './SVG';
 import Timer from './Timer';
 import { useAuth } from './UseAuth';
+import Loader from '../Loader/Loader';
 
 export default function Login() {
   const [username, setUserName] = useState('');
@@ -12,9 +13,10 @@ export default function Login() {
   const [otp, setOtp] = useState();
   const [givenOtptp, setGivenOtp] = useState();
   const [time, setTime] = useState(false);
-  const [details, setDetails]= useState();
-  const {verify, setVerify} = useAuth();
-  
+  const [details, setDetails] = useState();
+  const [loader, setLoader] = useState(false);
+  const { verify, setVerify } = useAuth();
+
 
   let nav = useNavigate('');
 
@@ -26,6 +28,7 @@ export default function Login() {
       password
     })
       .then(async res => {
+        setLoader(true)
         setDetails(res.data[0][0].username);
         if (res.status === 200) {
           const modalButton = document.getElementById('myModalButton');
@@ -46,26 +49,36 @@ export default function Login() {
         }
       })
       .catch(() => {
+        setLoader(false)
         alert('login failed');
         localStorage.setItem('logindash', false);
+      }).finally(() => {
+        setLoader(false);
       })
   }
 
   const routeUser = async () => {
-    if (otp == givenOtptp) {
-      console.log(true);
-      setVerify(true);
-      console.log({verify:verify});
-      alert('Login successful');
-      close.click();
-      setTime(false);
-      localStorage.setItem('logindash', true);
-      localStorage.setItem('username', details);
-      nav("/home");
-    } else {
-      console.log(false);
-      alert('invalid code');
-      localStorage.clear('username');
+    try {
+      if (otp == givenOtptp) {
+        setLoader(true);
+        console.log(true);
+        setVerify(true);
+        console.log({ verify: verify });
+        alert('Login successful');
+        close.click();
+        setTime(false);
+        localStorage.setItem('logindash', true);
+        localStorage.setItem('username', details);
+        nav("/home");
+      } else {
+        console.log(false);
+        alert('invalid code');
+        localStorage.clear('username');
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoader(false);
     }
   }
 
@@ -89,7 +102,7 @@ export default function Login() {
     // const logindash = verify;
     const logindash = localStorage.getItem('logindash');
 
-    if (logindash === 'true'|| logindash === true) {
+    if (logindash === 'true' || logindash === true) {
       nav('/home');
     }
   }, [nav]);
@@ -97,6 +110,7 @@ export default function Login() {
 
   return (
     <div className='login text-secondary px-5 px-md-0'>
+      {loader && <Loader />}
       <Link to={'/signup'} className='m-0 fs-5 fw-semibold d-flex align-items-center justify-content-center position-absolute top-0 end-0 m-3 pointer text-decoration-none'>Signup<i class="bi bi-arrow-right px-2 mt-1"></i></Link>
       <form className='text-start z-3' onSubmit={handleSubmit}>
         {/* <h1 className='mb-0 fs-2 fst-italic text-white'>DashBoard</h1>

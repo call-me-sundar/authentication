@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from './Projects/auth/Signup';
 import Timer from './Projects/auth/Timer';
 import { AuthProvider } from './Projects/auth/UseAuth';
+import Loader from './Projects/Loader/Loader';
 
 
 
@@ -20,6 +21,7 @@ export default function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/loader" element={<Loader />} />
             <Route path="/login" element={<Login />} />
             <Route path="/timer" element={<Timer />} />
             <Route path='/home' element={<Home />}>

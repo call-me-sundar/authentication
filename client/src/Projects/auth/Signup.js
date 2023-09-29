@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import SVG from './SVG';
 import Timer from './Timer';
 import { useAuth } from './UseAuth';
+import Loader from '../Loader/Loader';
 
 export default function Signup() {
     const [username, setUserName] = useState('');
@@ -15,11 +16,13 @@ export default function Signup() {
     const [otp, setOtp] = useState();
     const [givenOtp, setGivenOtp] = useState();
     const [time, setTime] = useState(false);
+    const [loader, setLoader] = useState(false);
     const { setVerify} = useAuth();
 
     let nav = useNavigate('');
     const checkUser = async () => {
         try {
+            setLoader(true)
             const res = await axios.post('http://localhost:5000/checkuser', {
                 username,
                 confirmPassword,
@@ -52,8 +55,11 @@ export default function Signup() {
                 alert("password does not match");
             }
         } catch (error) {
+            setLoader(false);
             console.error(error);
             alert('An error occurred while creating the user');
+        }finally{
+            setLoader(false);
         }
     }
 
@@ -119,6 +125,7 @@ export default function Signup() {
 
     return (
         <div className='login text-secondary px-5 px-md-0'>
+            {loader && <Loader/>}
             <Link to={'/'} className='m-0 fs-5 fw-semibold d-flex align-items-center justify-content-center position-absolute top-0 end-0 m-3 pointer text-decoration-none'>Login<i className="bi bi-arrow-right px-2 mt-1"></i></Link>
             <form className='text-start z-3' onSubmit={handleSubmit}>
                 <h1 className='text-primary mb-0 fs-3'>Here you can Signup</h1>

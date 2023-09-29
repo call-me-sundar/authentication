@@ -1,12 +1,13 @@
 // get the client
 const mysql = require('mysql2/promise');
+require('dotenv').config();
 
 // create the connection to database
 const pool = mysql.createPool({
-  host: 'srv787.hstgr.io',
-  user: 'u842521168_new',
-  database: 'u842521168_new',
-  password:"Admin@123"
+  host: process.env.HOST,
+  user: process.env.USER,
+  database: process.env.DB,
+  password: process.env.PASS
   // host: 'localhost',
   // user: 'root',
   // database: 'dashboard'
