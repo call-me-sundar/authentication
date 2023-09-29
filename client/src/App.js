@@ -8,27 +8,29 @@ import './login.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from './Projects/auth/Signup';
 import Timer from './Projects/auth/Timer';
+import { AuthProvider } from './Projects/auth/UseAuth';
 
 
-function App() {
 
+export default function App() {
 
   return (
-    <div className="App bg-dark" style={{height:"100vh", overflowY:"auto"}}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/timer" element={<Timer />} />
-          <Route path='/home' element={<Home />}>
-            <Route path='' element={<HomeContent/>}/>
-            <Route path='admindetails' element={<AdminDetails/>}/>
-            <Route path='tabledata' element={<TableData/>}/>
-          </Route>
-          <Route path='/signup' element={<Signup/>}/>
-        </Routes>
-      </BrowserRouter>
+    <div className="App bg-dark" style={{ height: "100vh", overflowY: "auto" }}>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/timer" element={<Timer />} />
+            <Route path='/home' element={<Home />}>
+              <Route path='' element={<HomeContent />} />
+              <Route path='admindetails' element={<AdminDetails />} />
+              <Route path='tabledata' element={<TableData />} />
+            </Route>
+            <Route path='/signup' element={<Signup />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 }
-
-export default App;

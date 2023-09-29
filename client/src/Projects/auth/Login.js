@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import SVG from './SVG';
 import Timer from './Timer';
+import { useAuth } from './UseAuth';
 
 export default function Login() {
   const [username, setUserName] = useState('');
@@ -12,6 +13,7 @@ export default function Login() {
   const [givenOtptp, setGivenOtp] = useState();
   const [time, setTime] = useState(false);
   const [details, setDetails]= useState();
+  const {verify, setVerify} = useAuth();
   
 
   let nav = useNavigate('');
@@ -52,6 +54,8 @@ export default function Login() {
   const routeUser = async () => {
     if (otp == givenOtptp) {
       console.log(true);
+      setVerify(true);
+      console.log({verify:verify});
       alert('Login successful');
       close.click();
       setTime(false);
@@ -82,9 +86,10 @@ export default function Login() {
   };
 
   useEffect(() => {
+    // const logindash = verify;
     const logindash = localStorage.getItem('logindash');
 
-    if (logindash === 'true') {
+    if (logindash === 'true'|| logindash === true) {
       nav('/home');
     }
   }, [nav]);

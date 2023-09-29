@@ -1,19 +1,25 @@
 import React, { useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/UseAuth';
+
 
 export default function Home() {
   const navigate = useNavigate();
+  const{verify, setVerify}= useAuth();
 
   const handleLogout = () => {
+    setVerify(false);
+    console.log({verify:verify});
     localStorage.removeItem('logindash');
     localStorage.removeItem('username');
     navigate('/');
   };
 
   useEffect(() => {
+    // const logindash = verify;
     const logindash = localStorage.getItem('logindash');
 
-    if (logindash === 'false' || logindash === null) {
+    if (logindash === 'false' || logindash === null || logindash === false || logindash === ' ' || logindash === undefined) {
       navigate('/');
     }
   }, [navigate]);

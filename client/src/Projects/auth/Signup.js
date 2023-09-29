@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import SVG from './SVG';
 import Timer from './Timer';
+import { useAuth } from './UseAuth';
 
 export default function Signup() {
     const [username, setUserName] = useState('');
@@ -14,6 +15,7 @@ export default function Signup() {
     const [otp, setOtp] = useState();
     const [givenOtp, setGivenOtp] = useState();
     const [time, setTime] = useState(false);
+    const { setVerify} = useAuth();
 
     let nav = useNavigate('');
     const checkUser = async () => {
@@ -67,6 +69,7 @@ export default function Signup() {
 
                 if (response.status === 200) {
                     alert(`Hi ${username}, Your account was created successfully`);
+                    setVerify(true);
                     localStorage.setItem('logindash', true);
                     localStorage.setItem('username', username);
                     nav('/')
