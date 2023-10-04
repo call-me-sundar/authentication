@@ -108,19 +108,6 @@ export default function Signup() {
         setshowPassword2(!showPassword2);
     };
 
-
-    const [seconds, setSeconds] = useState(30);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setSeconds(seconds - 1);
-        }, 1000);
-
-        return () => {
-            clearInterval(interval); // Stop the timer when the component unmounts
-        };
-    }, []);
-
     return (
         <div className='login text-secondary px-5 px-md-0'>
             {loader && <Loader/>}

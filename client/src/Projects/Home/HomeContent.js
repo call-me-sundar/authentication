@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function () {
+export default function HomeContent() {
     return (
         <div>
             <p className='ls-1'>

@@ -41,7 +41,7 @@ export default function Home() {
             </li>
           </ul>
           <div class="dropdown">
-            <a class="btn border-0 shadow-none text-white p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="btn border-0 shadow-none text-white p-0" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i className="bi bi-person-circle fs-4 lh-1"></i>
               <p className='text-white m-0 lh-1 fs-6'>{localStorage.getItem('username')}</p>
             </a>
