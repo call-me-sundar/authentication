@@ -149,11 +149,11 @@ export default function Signup() {
                             required
                             id='password'
                         />
-                        <a onClick={togglePasswordVisibility1}
+                        <button onClick={togglePasswordVisibility1}
                             className='text-white position-absolute top-50 end-0 translate-middle-y d-flex h-100 justify-content-center align-items-center p-3 pointer'>
                             <i className={`bi bi-eye-slash ${showPassword1 ? 'd-none' : 'd-block'}`}></i>
                             <i className={`bi bi-eye ${showPassword1 ? 'd-block' : 'd-none'}`}></i>
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div className='mb-3'>
@@ -167,11 +167,11 @@ export default function Signup() {
                             required
                             id='confirmpassword'
                         />
-                        <a onClick={togglePasswordVisibility2}
+                        <button onClick={togglePasswordVisibility2}
                             className='text-white position-absolute top-50 end-0 translate-middle-y d-flex h-100 justify-content-center align-items-center p-3 pointer'>
                             <i className={`bi bi-eye-slash ${showPassword2 ? 'd-none' : 'd-block'}`}></i>
                             <i className={`bi bi-eye ${showPassword2 ? 'd-block' : 'd-none'}`}></i>
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <input type='submit' className='btn btn-primary d-block w-100 py-2_5 mb-3' value={`Register`} />
@@ -203,14 +203,14 @@ export default function Signup() {
                                 <h1 className="modal-title fs-5" id="exampleModalLabel">
                                     Confirmation {time && <Timer />}
                                 </h1>
-                                <a
+                                <button
                                     type="button"
                                     className=" text-danger"
                                     data-bs-dismiss="modal"
                                     aria-label="Close"
                                     onClick={() => setTime(false)}>
                                     <i className="bi bi-x-lg border border-0 shadow-none"></i>
-                                </a>
+                                </button>
 
                             </div>
                             <div className="modal-body">

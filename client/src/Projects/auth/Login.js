@@ -138,11 +138,11 @@ export default function Login() {
               required
               id='password'
             />
-            <a onClick={togglePasswordVisibility}
-              className='text-white position-absolute top-50 end-0 translate-middle-y d-flex h-100 justify-content-center align-items-center p-3 pointer'>
+            <button onClick={togglePasswordVisibility}
+              className='btn text-white position-absolute top-50 end-0 translate-middle-y d-flex h-100 justify-content-center align-items-center p-3 pointer'>
               <i className={`bi bi-eye-slash ${showPassword ? 'd-none' : 'd-block'}`}></i>
               <i className={`bi bi-eye ${showPassword ? 'd-block' : 'd-none'}`}></i>
-            </a>
+            </button>
           </div>
         </div>
         <input type='submit' className='btn btn-primary d-block w-100 py-2_5 mb-3' value={`Submit`} />
@@ -175,14 +175,14 @@ export default function Login() {
                 <h1 className="modal-title fs-5" id="staticBackdropLabel">
                   Confirmation {time && <Timer />}
                 </h1>
-                <a
+                <button
                   type="button"
                   className=" text-danger"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                   onClick={() => setTime(false)}>
                   <i className="bi bi-x-lg border border-0 shadow-none"></i>
-                </a>
+                </button>
               </div>
               <div className="modal-body">
                 <p className='text-white fw-light'>
