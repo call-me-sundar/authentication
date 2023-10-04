@@ -59,7 +59,7 @@ export default function Login() {
 
   const routeUser = async () => {
     try {
-      if (otp == givenOtptp) {
+      if (otp === givenOtptp) {
         setLoader(true);
         console.log(true);
         setVerify(true);

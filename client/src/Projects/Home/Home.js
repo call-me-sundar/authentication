@@ -41,10 +41,10 @@ export default function Home() {
             </li>
           </ul>
           <div class="dropdown">
-            <a class="btn border-0 shadow-none text-white p-0" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn border-0 shadow-none text-white p-0" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i className="bi bi-person-circle fs-4 lh-1"></i>
               <p className='text-white m-0 lh-1 fs-6'>{localStorage.getItem('username')}</p>
-            </a>
+            </button>
             <ul class="dropdown-menu p-0" data-bs-theme="dark">
               <li><p class="m-0 text-center text-uppercase" disabled='disabled'>{localStorage.getItem('username')}</p></li>
               <li><hr className="dropdown-divider" /></li>

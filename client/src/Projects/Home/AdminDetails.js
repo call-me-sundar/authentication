@@ -1,13 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import Loader from '../Loader/Loader';
 
 export default function AdminDetails() {
     const [details, setDetails] = useState([]);
     const [loader, setLoader] = useState(false);
-    let username = localStorage.getItem('username');
+    const username = localStorage.getItem('username');
 
-    const getAdminDetails = async () => {
+    const getAdminDetails = useCallback(async () => {
         try {
             setLoader(true);
             const res = await axios.post('http://localhost:5000/getadmin', {
@@ -21,11 +21,11 @@ export default function AdminDetails() {
         } finally {
             setLoader(false);
         }
-    };
+    }, [username]);
 
     useEffect(() => {
         getAdminDetails();
-    }, []);
+    }, [getAdminDetails]);
 
     return (
         <div>

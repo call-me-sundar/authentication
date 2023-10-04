@@ -64,9 +64,9 @@ export default function Signup() {
     }
 
     const createUser = async () => {
-        if (otp == givenOtp) {
+        if (otp === givenOtp) {
             try {
-                console.log(otp == givenOtp);
+                console.log(otp === givenOtp);
                 const response = await axios.post('http://localhost:5000/create', {
                     username,
                     confirmPassword,
