@@ -21,6 +21,7 @@ export default function Login() {
   let nav = useNavigate('');
 
   let close = document.getElementById('modalClose');
+  const modalButton = document.getElementById('myModalButton');
 
   const checkUser = async () => {
     await axios.post('http://localhost:5000/login', {
@@ -31,7 +32,6 @@ export default function Login() {
         setLoader(true)
         setDetails(res.data[0][0].username);
         if (res.status === 200) {
-          const modalButton = document.getElementById('myModalButton');
           modalButton.click();
           let newRes = await axios.post('http://localhost:5000/otp', {
             username
@@ -95,7 +95,6 @@ export default function Login() {
   // password visibilty
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-    console.log(showPassword);
   };
 
   useEffect(() => {

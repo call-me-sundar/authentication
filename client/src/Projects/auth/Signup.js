@@ -102,12 +102,10 @@ export default function Signup() {
     // password visibilty
     const togglePasswordVisibility1 = () => {
         setshowPassword1(!showPassword1);
-        console.log(showPassword1);
     };
 
     const togglePasswordVisibility2 = () => {
         setshowPassword2(!showPassword2);
-        console.log(showPassword2);
     };
 
 
