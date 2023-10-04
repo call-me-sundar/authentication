@@ -110,7 +110,7 @@ export default function Login() {
   return (
     <div className='login text-secondary px-5 px-md-0'>
       {loader && <Loader />}
-      <Link to={'/signup'} className='m-0 fs-5 fw-semibold d-flex align-items-center justify-content-center position-absolute top-0 end-0 m-3 pointer text-decoration-none'>Signup<i class="bi bi-arrow-right px-2 mt-1"></i></Link>
+      <Link to={'/signup'} className='m-0 fs-5 fw-semibold d-flex align-items-center justify-content-center position-absolute top-0 end-0 m-3 pointer text-decoration-none'>Signup<i className="bi bi-arrow-right px-2 mt-1"></i></Link>
       <form className='text-start z-3' onSubmit={handleSubmit}>
         {/* <h1 className='mb-0 fs-2 fst-italic text-white'>DashBoard</h1>
         <h1 className='mb-2 fs-5 fst-italic text-white'>Login</h1> */}

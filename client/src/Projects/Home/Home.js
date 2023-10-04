@@ -40,13 +40,13 @@ export default function Home() {
               <Link className='nav-link text-white p-0' to={`admindetails`}><i className="bi bi-clipboard2-data text-white px-2"></i></Link>
             </li>
           </ul>
-          <div class="dropdown">
-            <button class="btn border-0 shadow-none text-white p-0" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div className="dropdown">
+            <button className="btn border-0 shadow-none text-white p-0" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <i className="bi bi-person-circle fs-4 lh-1"></i>
-              <p className='text-white m-0 lh-1 fs-6'>{localStorage.getItem('username')}</p>
+              <span className='text-white m-0 lh-1 fs-6'>{localStorage.getItem('username')}</span>
             </button>
-            <ul class="dropdown-menu p-0" data-bs-theme="dark">
-              <li><p class="m-0 text-center text-uppercase" disabled='disabled'>{localStorage.getItem('username')}</p></li>
+            <ul className="dropdown-menu p-0" data-bs-theme="dark">
+              <li><p className="m-0 text-center text-uppercase" disabled='disabled'>{localStorage.getItem('username')}</p></li>
               <li><hr className="dropdown-divider" /></li>
               <li><Link to={`tabledata`} className="dropdown-item">Details</Link></li>
               <li><Link to={'/'} className="dropdown-item" onClick={handleLogout}>Logout</Link></li>
