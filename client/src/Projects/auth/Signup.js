@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import SVG from './SVG';
@@ -23,7 +23,7 @@ export default function Signup() {
     const checkUser = async () => {
         try {
             setLoader(true)
-            const res = await axios.post('http://localhost:5000/checkuser', {
+            const res = await axios.post('https://dashboard-auth-ggbt.onrender.com/checkuser', {
                 username,
                 confirmPassword,
                 mail
@@ -36,7 +36,7 @@ export default function Signup() {
                     alert('User not found');
                     const modalButton = document.getElementById('myModalButton');
                     modalButton.click();
-                    let newRes = await axios.post('http://localhost:5000/otp', {
+                    let newRes = await axios.post('https://dashboard-auth-ggbt.onrender.com/otp', {
                         mail
                     });
                     setOtp(newRes.data);
@@ -64,10 +64,10 @@ export default function Signup() {
     }
 
     const createUser = async () => {
-        if (otp === givenOtp) {
+        if (otp == givenOtp) {
             try {
-                console.log(otp === givenOtp);
-                const response = await axios.post('http://localhost:5000/create', {
+                console.log(otp == givenOtp);
+                const response = await axios.post('https://dashboard-auth-ggbt.onrender.com/create', {
                     username,
                     confirmPassword,
                     mail
@@ -149,11 +149,11 @@ export default function Signup() {
                             required
                             id='password'
                         />
-                        <button onClick={togglePasswordVisibility1}
+                        <a onClick={togglePasswordVisibility1}
                             className='text-white position-absolute top-50 end-0 translate-middle-y d-flex h-100 justify-content-center align-items-center p-3 pointer'>
                             <i className={`bi bi-eye-slash ${showPassword1 ? 'd-none' : 'd-block'}`}></i>
                             <i className={`bi bi-eye ${showPassword1 ? 'd-block' : 'd-none'}`}></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div className='mb-3'>
@@ -167,11 +167,11 @@ export default function Signup() {
                             required
                             id='confirmpassword'
                         />
-                        <button onClick={togglePasswordVisibility2}
+                        <a onClick={togglePasswordVisibility2}
                             className='text-white position-absolute top-50 end-0 translate-middle-y d-flex h-100 justify-content-center align-items-center p-3 pointer'>
                             <i className={`bi bi-eye-slash ${showPassword2 ? 'd-none' : 'd-block'}`}></i>
                             <i className={`bi bi-eye ${showPassword2 ? 'd-block' : 'd-none'}`}></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <input type='submit' className='btn btn-primary d-block w-100 py-2_5 mb-3' value={`Register`} />
@@ -203,14 +203,14 @@ export default function Signup() {
                                 <h1 className="modal-title fs-5" id="exampleModalLabel">
                                     Confirmation {time && <Timer />}
                                 </h1>
-                                <button
+                                <a
                                     type="button"
                                     className=" text-danger"
                                     data-bs-dismiss="modal"
                                     aria-label="Close"
                                     onClick={() => setTime(false)}>
                                     <i className="bi bi-x-lg border border-0 shadow-none"></i>
-                                </button>
+                                </a>
 
                             </div>
                             <div className="modal-body">

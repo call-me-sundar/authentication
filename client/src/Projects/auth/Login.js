@@ -24,7 +24,7 @@ export default function Login() {
   const modalButton = document.getElementById('myModalButton');
 
   const checkUser = async () => {
-    await axios.post('http://localhost:5000/login', {
+    await axios.post('https://dashboard-auth-ggbt.onrender.com/login', {
       username,
       password
     })
@@ -33,7 +33,7 @@ export default function Login() {
         setDetails(res.data[0][0].username);
         if (res.status === 200) {
           modalButton.click();
-          let newRes = await axios.post('http://localhost:5000/otp', {
+          let newRes = await axios.post('https://dashboard-auth-ggbt.onrender.com/otp', {
             username
           });
           setOtp(newRes.data);
@@ -59,7 +59,7 @@ export default function Login() {
 
   const routeUser = async () => {
     try {
-      if (otp === givenOtptp) {
+      if (otp == givenOtptp) {
         setLoader(true);
         console.log(true);
         setVerify(true);
@@ -110,7 +110,7 @@ export default function Login() {
   return (
     <div className='login text-secondary px-5 px-md-0'>
       {loader && <Loader />}
-      <Link to={'/signup'} className='m-0 fs-5 fw-semibold d-flex align-items-center justify-content-center position-absolute top-0 end-0 m-3 pointer text-decoration-none'>Signup<i className="bi bi-arrow-right px-2 mt-1"></i></Link>
+      <Link to={'/signup'} className='m-0 fs-5 fw-semibold d-flex align-items-center justify-content-center position-absolute top-0 end-0 m-3 pointer text-decoration-none'>Signup<i class="bi bi-arrow-right px-2 mt-1"></i></Link>
       <form className='text-start z-3' onSubmit={handleSubmit}>
         {/* <h1 className='mb-0 fs-2 fst-italic text-white'>DashBoard</h1>
         <h1 className='mb-2 fs-5 fst-italic text-white'>Login</h1> */}
@@ -138,11 +138,11 @@ export default function Login() {
               required
               id='password'
             />
-            <button onClick={togglePasswordVisibility}
-              className='btn text-white position-absolute top-50 end-0 translate-middle-y d-flex h-100 justify-content-center align-items-center p-3 pointer'>
+            <a onClick={togglePasswordVisibility}
+              className='text-white position-absolute top-50 end-0 translate-middle-y d-flex h-100 justify-content-center align-items-center p-3 pointer'>
               <i className={`bi bi-eye-slash ${showPassword ? 'd-none' : 'd-block'}`}></i>
               <i className={`bi bi-eye ${showPassword ? 'd-block' : 'd-none'}`}></i>
-            </button>
+            </a>
           </div>
         </div>
         <input type='submit' className='btn btn-primary d-block w-100 py-2_5 mb-3' value={`Submit`} />
@@ -175,14 +175,14 @@ export default function Login() {
                 <h1 className="modal-title fs-5" id="staticBackdropLabel">
                   Confirmation {time && <Timer />}
                 </h1>
-                <button
+                <a
                   type="button"
                   className=" text-danger"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                   onClick={() => setTime(false)}>
                   <i className="bi bi-x-lg border border-0 shadow-none"></i>
-                </button>
+                </a>
               </div>
               <div className="modal-body">
                 <p className='text-white fw-light'>
