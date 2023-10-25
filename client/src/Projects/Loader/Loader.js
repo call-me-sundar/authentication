@@ -46,6 +46,7 @@ export default function Loader() {
                 strokeLinecap="round"
             />
         </svg>
+        <p>Fetching Details...</p>
         </div>
     )
 }

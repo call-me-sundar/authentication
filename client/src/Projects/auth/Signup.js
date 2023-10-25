@@ -23,7 +23,7 @@ export default function Signup() {
     const checkUser = async () => {
         try {
             setLoader(true)
-            const res = await axios.post('https://dashboard-auth-ggbt.onrender.com/checkuser', {
+            const res = await axios.post('http://localhost:5000/checkuser', {
                 username,
                 confirmPassword,
                 mail
@@ -36,7 +36,7 @@ export default function Signup() {
                     alert('User not found');
                     const modalButton = document.getElementById('myModalButton');
                     modalButton.click();
-                    let newRes = await axios.post('https://dashboard-auth-ggbt.onrender.com/otp', {
+                    let newRes = await axios.post('http://localhost:5000/otp', {
                         mail
                     });
                     setOtp(newRes.data);
@@ -67,7 +67,7 @@ export default function Signup() {
         if (otp == givenOtp) {
             try {
                 console.log(otp == givenOtp);
-                const response = await axios.post('https://dashboard-auth-ggbt.onrender.com/create', {
+                const response = await axios.post('http://localhost:5000/create', {
                     username,
                     confirmPassword,
                     mail

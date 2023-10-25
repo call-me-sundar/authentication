@@ -10,7 +10,7 @@ export default function TableData() {
   let getTableData = async () => {
     try{
       setLoader(true);
-    let res = await axios.get('https://dashboard-auth-ggbt.onrender.com/tabledatas');
+    let res = await axios.get('http://localhost:5000/tabledatas');
     setTableData(res.data);
     console.log(res.data);
     }catch(err){
@@ -22,7 +22,7 @@ export default function TableData() {
   }
 
   let getColumnDatas = async () => {
-    let res = await axios.get('https://dashboard-auth-ggbt.onrender.com/columndatas');
+    let res = await axios.get('http://localhost:5000/columndatas');
     setColumnDatas(res.data);
     console.log(res.data);
   }
@@ -32,7 +32,7 @@ export default function TableData() {
     getColumnDatas()
   }, [])
   return (
-    <div className='text-white'>
+    <div className='text-white w-100'>
       {loader && <Loader/>}
       <h1 className='text-start py-4'>Table Datas</h1>
         <table className='table table-bordered d-block rounded-3 border table-responsive'>

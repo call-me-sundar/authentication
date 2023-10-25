@@ -26,9 +26,11 @@ export default function Home() {
 
   return (
     <div>
-      <div className='w-100 po p-0 position-sticky top-0'>
+      <div className='w-100 po p-0 position-fixed top-0'>
         <ul className="nav justify-content-between p-3 px-4 bg-primary align-items-center" >
-          <Link to={`/home`} className="navbar-brand text-white fs-4 fst-italic">Navbar</Link>
+          <Link to={`/home`} className="navbar-brand text-white fs-4 fst-italic">
+            <img src='https://cdn-icons-png.flaticon.com/128/7211/7211037.png' height={'30px'}></img>
+          </Link>
           <ul className="nav">
             <li className="nav-item">
               <Link className='nav-link text-white p-0' to={`/home`}><i className="bi bi-house text-white px-2"></i><span className='d-none'>Home</span></Link>
@@ -42,7 +44,8 @@ export default function Home() {
           </ul>
           <div className="dropdown">
             <button className="btn border-0 shadow-none text-white p-0" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i className="bi bi-person-circle fs-4 lh-1"></i>
+              {/* <i className="bi bi-person-circle fs-4 lh-1"></i> */}
+              <img src='https://cdn-icons-png.flaticon.com/128/8484/8484965.png?ga=GA1.1.1226172865.1686724363' className='p-2' height={'45px'}></img>
               <span className='text-white m-0 lh-1 fs-6'>{localStorage.getItem('username')}</span>
             </button>
             <ul className="dropdown-menu p-0" data-bs-theme="dark">
@@ -54,7 +57,7 @@ export default function Home() {
           </div>
         </ul>
       </div>
-      <div className='text-white container'>
+      <div className='text-white container' style={{"minHeight":"100vh","display":"flex","justifyContent":"center","alignItems":"center"}}>
         <Outlet />
       </div>
     </div>

@@ -24,7 +24,7 @@ export default function Login() {
   const modalButton = document.getElementById('myModalButton');
 
   const checkUser = async () => {
-    await axios.post('https://dashboard-auth-ggbt.onrender.com/login', {
+    await axios.post('http://localhost:5000/login', {
       username,
       password
     })
@@ -33,7 +33,7 @@ export default function Login() {
         setDetails(res.data[0][0].username);
         if (res.status === 200) {
           modalButton.click();
-          let newRes = await axios.post('https://dashboard-auth-ggbt.onrender.com/otp', {
+          let newRes = await axios.post('http://localhost:5000/otp', {
             username
           });
           setOtp(newRes.data);

@@ -10,7 +10,7 @@ export default function AdminDetails() {
     const getAdminDetails = useCallback(async () => {
         try {
             setLoader(true);
-            const res = await axios.post('https://dashboard-auth-ggbt.onrender.com/getadmin', {
+            const res = await axios.post('http://localhost:5000/getadmin', {
                 username: username,
             });
             setDetails(res.data);
